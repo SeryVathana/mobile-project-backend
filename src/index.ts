@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { createServer } from "http";
-import { loginWithEmailPassword, registerWithEmailPassword } from "./handlers/playerAuthHandlers";
+import { getHistories, getSessionByToken, loginWithEmailPassword, registerWithEmailPassword, saveHistory } from "./handlers/playerAuthHandlers";
 import { createRoomHandler, findRoomHandler } from "./handlers/roomHandlers";
 import { connectToDatabase } from "./db";
 
@@ -41,6 +41,9 @@ app.post("/find-room/:roomCode", findRoomHandler);
 // Player auth handlers
 app.post("/login", loginWithEmailPassword);
 app.post("/register", registerWithEmailPassword);
+app.post("/get-session", getSessionByToken);
+app.get("/get-histories/:id", getHistories)
+app.post("/save-history", saveHistory)
 
 export function updateRoom(room: any) {
   rooms = room;

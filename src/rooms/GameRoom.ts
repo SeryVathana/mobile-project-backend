@@ -84,6 +84,8 @@ export class GameRoom extends Room<GameRoomState> {
         player.isWordMissed = true; // Set the flag to prevent duplicate misses
         const { word, words } = this.generatedWord(player, [...player.words]);
 
+        console.log("word-missed", player.username, new Date());
+
         player.currentWord = word;
         player.words = new ArraySchema<string>(...words);
       }
