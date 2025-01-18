@@ -6,7 +6,7 @@ import { config } from "dotenv";
 config();
 
 export function createToken(payload: any): string {
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "12h" });
 }
 
 // check if token is valid

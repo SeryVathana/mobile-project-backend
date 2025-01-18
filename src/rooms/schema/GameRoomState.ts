@@ -20,6 +20,7 @@ export class PlayerState extends Schema {
 
 export class GameRoomState extends Schema {
   @type("number") phase: GamePhase = GamePhase.NONE;
-  @type([PlayerState]) players: ArraySchema<PlayerState> = new ArraySchema<PlayerState>();
+  @type([PlayerState]) players: ArraySchema<PlayerState> =
+    new ArraySchema<PlayerState>();
   @type("number") secondsLeft: number = 11;
 }
