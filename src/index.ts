@@ -4,7 +4,16 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { createServer } from "http";
-import { getHistories, getSessionByToken, loginWithEmailPassword, registerWithEmailPassword, saveHistory } from "./handlers/playerAuthHandlers";
+import {
+  getHistories,
+  getSessionByToken,
+  loginWithEmailPassword,
+  registerWithEmailPassword,
+  saveHistory,
+  updatePassword,
+  updateProfileImage,
+  updateUserName,
+} from "./handlers/playerAuthHandlers";
 import { createRoomHandler, findRoomHandler } from "./handlers/roomHandlers";
 import { connectToDatabase } from "./db";
 
@@ -16,7 +25,7 @@ export let rooms: GameRoomType[] = [];
 dotenv.config();
 
 app.use(cors({ origin: "*" }));
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 // app.use(express.urlencoded({ extended: true }));
 // serve static files
 app.use(express.static("public"));
@@ -42,8 +51,11 @@ app.post("/find-room/:roomCode", findRoomHandler);
 app.post("/login", loginWithEmailPassword);
 app.post("/register", registerWithEmailPassword);
 app.post("/get-session", getSessionByToken);
-app.get("/get-histories/:id", getHistories)
-app.post("/save-history", saveHistory)
+app.get("/get-histories/:id", getHistories);
+app.post("/save-history", saveHistory);
+app.post("/update-username", updateUserName);
+app.post("/update-pf", updateProfileImage);
+app.post("/change-password", updatePassword);
 
 export function updateRoom(room: any) {
   rooms = room;
