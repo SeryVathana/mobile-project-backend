@@ -34,7 +34,6 @@ export const createRoomHandler = async (req: Request, res: Response) => {
         {
           id: user.id,
           username: user.username,
-          email: user.email,
         },
       ],
     });
@@ -42,6 +41,8 @@ export const createRoomHandler = async (req: Request, res: Response) => {
     updateRoom(rooms);
 
     gameServer.define(roomCode, GameRoom);
+
+    console.log("Room created:", roomCode);
 
     return res.status(201).json({ room_code: roomCode });
   } catch (error) {
@@ -66,7 +67,9 @@ export const findRoomHandler = async (req: Request, res: Response) => {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  const room = rooms.find((r) => r.roomCode == roomCode && r.players[0].id !== jwt.id);
+  const room = rooms.find(
+    (r) => r.roomCode == roomCode && r.players[0].id !== jwt.id
+  );
 
   if (!room) {
     return res.status(404).json({ error: "Room not found" });
@@ -89,7 +92,6 @@ export const findRoomHandler = async (req: Request, res: Response) => {
         r.players.push({
           id: user.id,
           username: user.username,
-          email: user.email,
         });
       }
       return r;

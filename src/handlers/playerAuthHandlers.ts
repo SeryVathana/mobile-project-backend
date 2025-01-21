@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { hashPassword } from "../utils/Password";
 import User from "../models/user";
 import { createToken, verifyToken } from "../utils/Token";
-import bcrypt from "bcrypt";
 import History from "../models/history";
 
 export const loginWithEmailPassword = async (req: Request, res: Response) => {
@@ -26,6 +25,7 @@ export const loginWithEmailPassword = async (req: Request, res: Response) => {
     const response = {
       id: user.id,
       username: user.username,
+      pf_image: user.pf_image,
       token,
     };
 

@@ -8,7 +8,6 @@ export class PlayerState extends Schema {
   @type("boolean") isLeader: boolean = false;
   @type("string") id: string = "";
   @type("string") username: string = "";
-  @type("string") email: string = "";
   @type("string") currentWord: string = "";
   @type(["string"]) words: ArraySchema<string> = new ArraySchema<string>();
   @type("number") score: number = 0;

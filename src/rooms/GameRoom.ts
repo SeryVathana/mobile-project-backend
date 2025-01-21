@@ -133,7 +133,6 @@ export class GameRoom extends Room<GameRoomState> {
       sessionId: client.sessionId,
       id: options.id,
       username: options.username,
-      email: options.email,
       isReady: this.state.players.length === 0,
       isLeader: this.state.players.length === 0,
     });

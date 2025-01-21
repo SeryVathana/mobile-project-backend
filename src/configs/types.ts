@@ -7,5 +7,4 @@ type GameRoomType = {
 type PlayerType = {
   id: string;
   username: string;
-  email: string;
 };
